@@ -23,18 +23,19 @@ export default function Intro({ onDone }) {
     let cancelled = false
 
     const run = async () => {
-      logo.set({ x: vw + 40, y: cy, scale: 0.3, opacity: 1 })
-      await logo.start({ x: cx, y: cy, scale: 1, transition: { duration: 1.3, ease: [0.22, 1, 0.36, 1] } })
+      const w0 = size.w * 0.3
+      logo.set({ x: vw + 20, y: (vh - w0 / RATIO) / 2, width: w0, opacity: 1 })
+      await logo.start({ x: cx, y: cy, width: size.w, transition: { duration: 1.8, ease: [0.45, 0, 0.2, 1] } })
       if (cancelled) return
       setShine(true)
       await new Promise((r) => setTimeout(r, 1500))
       if (cancelled) return
       const target = document.getElementById('header-logo')?.getBoundingClientRect()
       const dock = target
-        ? { x: target.left, y: target.top, scale: target.width / size.w }
-        : { x: cx, y: -size.h, scale: 0.3 }
+        ? { x: target.left, y: target.top, width: target.width }
+        : { x: cx, y: -size.h, width: size.w * 0.3 }
       bg.start({ opacity: 0, transition: { duration: 0.9, delay: 0.25 } })
-      await logo.start({ ...dock, transition: { duration: 1, ease: [0.65, 0, 0.35, 1] } })
+      await logo.start({ ...dock, transition: { duration: 1.1, ease: [0.65, 0, 0.35, 1] } })
       finish()
     }
 
@@ -57,7 +58,7 @@ export default function Intro({ onDone }) {
       <motion.div className="intro-bg" initial={{ opacity: 1 }} animate={bg} />
       <motion.div
         className="intro-logo"
-        style={{ width: size.w, height: size.h, opacity: 0, transformOrigin: '0 0' }}
+        style={{ width: size.w, aspectRatio: `${RATIO}`, opacity: 0 }}
         animate={logo}
       >
         <img src={LOGO} alt="" />
