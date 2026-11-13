@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
+import Intro from './components/Intro.jsx'
 import { AnimatePresence, motion } from 'framer-motion'
 import Layout from './components/Layout.jsx'
 import Home from './pages/Home.jsx'
@@ -18,10 +20,21 @@ export const routes = [
   { path: '/contact', label: 'Contact', element: <Contact /> },
 ]
 
+const seen = () => {
+  try { return sessionStorage.getItem('vh-intro') === '1' } catch { return false }
+}
+const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
 export default function App() {
   const location = useLocation()
+  const [introDone, setIntroDone] = useState(() => seen() || reduced())
+  const finishIntro = () => {
+    try { sessionStorage.setItem('vh-intro', '1') } catch {}
+    setIntroDone(true)
+  }
   return (
-    <Layout>
+    <Layout logoReady={introDone}>
+      {!introDone && <Intro onDone={finishIntro} />}
       <AnimatePresence mode="wait">
         <motion.div
           key={location.pathname}

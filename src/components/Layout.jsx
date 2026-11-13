@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { routes } from '../App.jsx'
 import { CONTACT } from '../data.js'
 
-export default function Layout({ children }) {
+export default function Layout({ children, logoReady = true }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { pathname } = useLocation()
@@ -24,7 +24,7 @@ export default function Layout({ children }) {
     <div className="shell">
       <header className={`topbar ${scrolled ? 'scrolled' : ''}`}>
         <Link to="/" className="brand" aria-label="Voices Homes home">
-          <img src="/logovh.png" alt="Voices Homes" />
+          <img id="header-logo" src="/logovh.png" alt="Voices Homes" style={{ opacity: logoReady ? 1 : 0 }} />
         </Link>
         <nav className={`nav ${open ? 'open' : ''}`} aria-label="Main">
           {routes.filter((r) => r.path !== '/contact').map((r) => (
