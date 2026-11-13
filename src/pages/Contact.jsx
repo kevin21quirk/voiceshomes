@@ -1,5 +1,6 @@
 import PageHero from '../components/PageHero.jsx'
 import Reveal from '../components/Reveal.jsx'
+import EnquiryForm from '../components/EnquiryForm.jsx'
 import { CONTACT, mailto } from '../data.js'
 
 export default function Contact() {
@@ -8,7 +9,10 @@ export default function Contact() {
       <PageHero eyebrow="Contact" title="Need to make contact?" image="/images/conversation.jpg" alt="A friendly conversation">
         We are always here to help and answer any questions you may have.
       </PageHero>
-      <section className="container section contact-grid">
+      <section className="container section form-section">
+        <Reveal><EnquiryForm /></Reveal>
+      </section>
+      <section className="container contact-grid">
         <Reveal className="card">
           <h3>Contact details</h3>
           <a className="row" href={`tel:${CONTACT.phoneHref}`}><span>Phone</span>{CONTACT.phone}</a>
