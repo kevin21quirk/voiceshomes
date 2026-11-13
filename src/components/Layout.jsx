@@ -24,7 +24,7 @@ export default function Layout({ children }) {
     <div className="shell">
       <header className={`topbar ${scrolled ? 'scrolled' : ''}`}>
         <Link to="/" className="brand" aria-label="Voices Homes home">
-          <img src="/logo.png" alt="Voices Homes" />
+          <img src="/logovh.png" alt="Voices Homes" />
         </Link>
         <nav className={`nav ${open ? 'open' : ''}`} aria-label="Main">
           {routes.filter((r) => r.path !== '/contact').map((r) => (
@@ -44,7 +44,7 @@ export default function Layout({ children }) {
       <footer className="footer">
         <div className="footer-grid">
           <div>
-            <div className="brand-light"><img src="/logo.png" alt="Voices Homes" /></div>
+            <div className="brand-light"><img src="/logovh.png" alt="Voices Homes" /></div>
             <p>Providing inspirational environments for young people to grow &amp; thrive.</p>
           </div>
           <div>

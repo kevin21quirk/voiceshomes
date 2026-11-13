@@ -31,7 +31,7 @@ export default function Home() {
             </motion.div>
           </div>
           <motion.div className="hero-card" animate={{ y: [0, -14, 0] }} transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}>
-            <img src="/logo.png" alt="" />
+            <img src="/logovh.png" alt="" />
             <div className="stat-row">
               <div><strong>North West</strong><span>of England</span></div>
               <div><strong>Therapeutic</strong><span>care model</span></div>
