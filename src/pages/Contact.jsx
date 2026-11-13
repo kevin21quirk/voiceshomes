@@ -17,10 +17,25 @@ export default function Contact() {
           ))}
           <a href={mailto} className="btn btn-gold">Send message</a>
         </Reveal>
-        <Reveal className="card gold" delay={0.1}>
-          <h3>Head office</h3>
-          <p>{CONTACT.address}</p>
-          <a href={CONTACT.mapUrl} target="_blank" rel="noreferrer" className="btn btn-ghost dark">View on map</a>
+        <Reveal className="map-card" delay={0.1}>
+          <iframe
+            title="Voices Homes head office location"
+            src={`https://www.google.com/maps?q=${encodeURIComponent(CONTACT.address)}&z=15&output=embed`}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+          <div className="map-info">
+            <span className="eyebrow dark">Head office</span>
+            <h3>Voices Homes</h3>
+            <address>
+              Hollinwood Business Centre<br />
+              Albert St, Hollinwood<br />
+              Failsworth, Oldham<br />
+              OL8 3QL, UK
+            </address>
+            <a href={CONTACT.mapUrl} target="_blank" rel="noreferrer" className="btn btn-blue">Get directions</a>
+          </div>
         </Reveal>
       </section>
     </>
