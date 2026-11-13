@@ -1,5 +1,6 @@
 import PageHero from '../components/PageHero.jsx'
 import Reveal from '../components/Reveal.jsx'
+import Split from '../components/Split.jsx'
 import CTA from '../components/CTA.jsx'
 
 const needs = ['Nurturing', 'Social', 'Emotional', 'Moral']
@@ -7,7 +8,7 @@ const needs = ['Nurturing', 'Social', 'Emotional', 'Moral']
 export default function OurHomes() {
   return (
     <>
-      <PageHero eyebrow="Our homes" title="A true therapeutic home away from home.">
+      <PageHero eyebrow="Our homes" title="A true therapeutic home away from home." image="/images/living-room.jpg" alt="A bright, comfortable living room">
         Each residential care home is staffed by trained therapists and dedicated, experienced professionals.
       </PageHero>
       <section className="container section">
@@ -25,6 +26,10 @@ export default function OurHomes() {
           <span>We are currently in the process of updating our properties to better serve our residents.</span>
         </Reveal>
       </section>
+      <Split image="/images/cooking.jpg" alt="Young people and carers cooking a meal together" eyebrow="Home life" title="Shared meals, shared moments." flip>
+        <p className="body">Everyday routines like cooking and eating together help young people feel settled, valued and part of a family-style community.</p>
+        <p className="note">Illustrative stock images.</p>
+      </Split>
       <CTA />
     </>
   )

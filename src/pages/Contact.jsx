@@ -5,7 +5,7 @@ import { CONTACT, mailto } from '../data.js'
 export default function Contact() {
   return (
     <>
-      <PageHero eyebrow="Contact" title="Need to make contact?">
+      <PageHero eyebrow="Contact" title="Need to make contact?" image="/images/conversation.jpg" alt="A friendly conversation">
         We are always here to help and answer any questions you may have.
       </PageHero>
       <section className="container section contact-grid">

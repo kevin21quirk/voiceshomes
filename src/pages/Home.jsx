@@ -1,14 +1,22 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Reveal from '../components/Reveal.jsx'
+import Split from '../components/Split.jsx'
 import CTA from '../components/CTA.jsx'
 import { mailto } from '../data.js'
 
 const tiles = [
-  { to: '/about', n: '01', title: 'Who We Are', text: 'Exceptional residential care for children and young people in the North West of England.' },
-  { to: '/who-we-help', n: '02', title: 'Who We Help', text: 'A safe, supportive place for young people who cannot be cared for by their families.' },
-  { to: '/our-homes', n: '03', title: 'Our Homes', text: 'Therapeutic homes away from home, staffed by trained therapists.' },
-  { to: '/our-people', n: '04', title: 'Our People', text: 'Experienced, highly trained professionals dedicated to brighter futures.' },
+  { to: '/about', n: '01', title: 'Who We Are', text: 'Exceptional residential care for children and young people in the North West of England.', img: '/images/laughing.jpg' },
+  { to: '/who-we-help', n: '02', title: 'Who We Help', text: 'A safe, supportive place for young people who cannot be cared for by their families.', img: '/images/friends.jpg' },
+  { to: '/our-homes', n: '03', title: 'Our Homes', text: 'Therapeutic homes away from home, staffed by trained therapists.', img: '/images/living-room.jpg' },
+  { to: '/our-people', n: '04', title: 'Our People', text: 'Experienced, highly trained professionals dedicated to brighter futures.', img: '/images/team-chat.jpg' },
+]
+
+const moments = [
+  { img: '/images/cooking.jpg', label: 'Cooking together', cls: 'wide' },
+  { img: '/images/conversation.jpg', label: 'One-to-one support' },
+  { img: '/images/painting.jpg', label: 'Creative time' },
+  { img: '/images/baking.jpg', label: 'Learning life skills', cls: 'wide' },
 ]
 
 export default function Home() {
@@ -30,12 +38,14 @@ export default function Home() {
               <Link to="/about" className="btn btn-ghost">Who we are</Link>
             </motion.div>
           </div>
-          <motion.div className="hero-card" animate={{ y: [0, -14, 0] }} transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}>
-            <img src="/logovh.png" alt="" />
-            <div className="stat-row">
-              <div><strong>North West</strong><span>of England</span></div>
-              <div><strong>Therapeutic</strong><span>care model</span></div>
-            </div>
+          <motion.div className="hero-visual" initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }}>
+            <img className="hero-main" src="/images/hero-group.jpg" alt="Group of smiling young people together outdoors" />
+            <motion.div className="float-chip c1" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}>
+              <strong>North West</strong><span>of England</span>
+            </motion.div>
+            <motion.div className="float-chip c2" animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}>
+              <strong>Therapeutic</strong><span>care model</span>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -49,24 +59,38 @@ export default function Home() {
           {tiles.map((t, i) => (
             <Reveal key={t.to} delay={i * 0.08}>
               <Link to={t.to} className="tile">
-                <span className="tile-n">{t.n}</span>
-                <h3>{t.title}</h3>
-                <p>{t.text}</p>
-                <span className="arrow">→</span>
+                <div className="tile-img"><img src={t.img} alt="" loading="lazy" /><span className="tile-n">{t.n}</span></div>
+                <div className="tile-body">
+                  <h3>{t.title}</h3>
+                  <p>{t.text}</p>
+                  <span className="arrow">→</span>
+                </div>
               </Link>
             </Reveal>
           ))}
         </div>
       </section>
 
-      <section className="band">
-        <div className="container band-inner">
+      <Split image="/images/support-talk.jpg" alt="Two people talking openly at a table" eyebrow="Our approach" title="Customised care plans, life-changing outcomes.">
+        <p className="body">We create customised care plans that result in life-changing positive outcomes for the young people in our care, meeting their nurturing, social, emotional and moral needs.</p>
+        <Link to="/our-homes" className="btn btn-blue">See our homes</Link>
+      </Split>
+
+      <section className="moments">
+        <div className="container">
           <Reveal>
-            <h2>Customised care plans, life-changing outcomes.</h2>
+            <span className="eyebrow">Life in our homes</span>
+            <h2>A true home away from home.</h2>
+            <p className="note">Illustrative stock images.</p>
           </Reveal>
-          <Reveal delay={0.1}>
-            <p>We create customised care plans that result in life-changing positive outcomes for the young people in our care, meeting their nurturing, social, emotional and moral needs.</p>
-          </Reveal>
+          <div className="mosaic">
+            {moments.map((m, i) => (
+              <Reveal key={m.label} delay={i * 0.08} className={`moment ${m.cls || ''}`}>
+                <img src={m.img} alt={m.label} loading="lazy" />
+                <span>{m.label}</span>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
