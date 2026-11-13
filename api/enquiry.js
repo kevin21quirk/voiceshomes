@@ -13,8 +13,7 @@ export default async function handler(req, res) {
 
   const key = process.env.RESEND_API_KEY
   if (!key) {
-    if (process.env.NODE_ENV === 'production') return res.status(503).json({ error: 'Email is not configured.' })
-    console.log('[enquiry - dev, not emailed]', { name, email, phone, role, enquiryType, message })
+    console.log('[enquiry - demo mode, not emailed]', { name, email, phone, role, enquiryType, message })
     return res.status(200).json({ ok: true })
   }
 
