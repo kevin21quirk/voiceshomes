@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Intro from './components/Intro.jsx'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -20,21 +20,20 @@ export const routes = [
   { path: '/contact', label: 'Contact', element: <Contact /> },
 ]
 
-const seen = () => {
-  try { return sessionStorage.getItem('vh-intro') === '1' } catch { return false }
-}
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 export default function App() {
   const location = useLocation()
-  const [introDone, setIntroDone] = useState(() => seen() || reduced())
-  const finishIntro = () => {
-    try { sessionStorage.setItem('vh-intro', '1') } catch {}
-    setIntroDone(true)
-  }
+  const [introDone, setIntroDone] = useState(false)
+  const showIntro = location.pathname === '/' && !introDone && !reduced()
+
+  useEffect(() => {
+    if (location.pathname !== '/') setIntroDone(false)
+  }, [location.pathname])
+
   return (
-    <Layout logoReady={introDone}>
-      {!introDone && <Intro onDone={finishIntro} />}
+    <Layout logoReady={!showIntro}>
+      {showIntro && <Intro onDone={() => setIntroDone(true)} />}
       <AnimatePresence mode="wait">
         <motion.div
           key={location.pathname}
